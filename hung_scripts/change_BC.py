@@ -50,7 +50,7 @@ def gen_U(exit_num):
                 "    {\n"
                 "        type                    flowRateInletOutletVelocity;\n"
                 "        volumetricFlowRate      $entry;\n"
-                "        profile                 laminarBL;\n"
+                "        profile                 uniformBL;\n"
                 "        value                   uniform (0 0 0);\n"
                 "    }\n"
                 "\n")
@@ -59,17 +59,17 @@ def gen_U(exit_num):
         f.write("    {\n"
                 "        type                    flowRateInletOutletVelocity;\n")
         f.write("        volumetricFlowRate      $exit_{};\n".format(i))
-        f.write("        profile                 laminarBL;\n")
+        f.write("        profile                 fullyDevelopedBL;\n")
         f.write("        value                   uniform (0 0 0);\n"
                 "    }\n"
                 "\n")
-    f.write('    "wall_.*"\n'
-            "    {\n"
-            "        type                    noSlip;\n"
-            "    }\n"
-            "}\n"
-            "\n"
-            "// ************************************************************************* //")
+    f.write(    '    "wall_.*"\n'
+                "    {\n"
+                "        type                    noSlip;\n"
+                "    }\n"
+                "}\n"
+                "\n"
+                "// ************************************************************************* //")
 
 os.getcwd()
 file_constant = 'constant/polyMesh/boundary'
