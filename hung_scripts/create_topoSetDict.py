@@ -62,7 +62,9 @@ FoamFile
     
     f.close()
 
-filename = "../coord_sbm.dat"
+import sys
+
+filename = sys.argv[1]
 
 coord_sbm = [line.rstrip('\n') for line in open(filename)]    #Read file line by line
 
@@ -100,7 +102,7 @@ for i in BOUNCOND:
     bc_coords.append(bc_coord)
     
     write_topoSetDict(bc_names, bc_coords)
-    break
+    #break
 
 #print(bc_coords)
 
