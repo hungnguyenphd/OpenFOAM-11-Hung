@@ -1,4 +1,3 @@
-
 def write_topoSetDict(bc_names, bc_coords):
     header = """
 /*--------------------------------*- C++ -*----------------------------------*\
@@ -61,8 +60,11 @@ FoamFile
     f.write("// ************************************************************************* //")
     
     f.close()
-
+import re
+import os
 import sys
+
+os.getcwd()
 
 filename = sys.argv[1]
 
@@ -75,15 +77,9 @@ print('Finish Initial Reading')
 
 BOUNCOND = list()
 for i in range(0, TOTAL):
-    if 'Zone T="' in coord_sbm[i]:
+    if 'Zone T="int' in coord_sbm[i]:
         BOUNCOND.append(i)
         #print(coord_sbm[i])
-
-#main
-import re
-import os
-
-os.getcwd()
 
 bc_names = list()
 bc_coords = list()
