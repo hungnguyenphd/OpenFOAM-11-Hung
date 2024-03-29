@@ -1,0 +1,95 @@
+
+solvers
+{
+    Phi
+    {
+        solver          GAMG;
+        smoother        DIC;
+
+        tolerance       1e-06;
+        relTol          0.01;
+    }
+
+    p
+    {
+        solver          GAMG;
+        tolerance       1e-07;
+        relTol          0.1;
+        smoother        DICGaussSeidel;
+    }
+
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    "(U|k|omega|nut).*"
+    {
+        solver          smoothSolver;
+        smoother        GaussSeidel;
+        tolerance       1e-05;
+        relTol          0;
+    }
+	
+	"(U|k|omega|nut)Final"
+    {
+        $U;
+        relTol          1e-08;
+    }
+}
+
+PIMPLE
+{
+    momentumPredictor           yes;
+
+    nOuterCorrectors		    1;
+    nCorrectors     		    3;
+    nNonOrthogonalCorrectors 	3;
+	
+    consistent                  yes;
+
+    outerCorrectorResidualControl
+    {
+	    p
+        {
+            relTol      1e-04;
+
+            // If this inital tolerance is reached, leave
+            tolerance   1e-05;
+        }
+
+        "(U|k|omega)"
+        {
+            relTol	    0;
+            tolerance   1e-5;
+        }
+    }
+        
+    residualControl
+    {
+        p			1e-6;
+        u			1e-7;
+        "(k|omega)" 1e-7;
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p       0.3;
+        pFinal  1;
+    }
+        
+    equations
+    {
+        "(U|k|omega)"       0.7;
+        "(U|k|omega)Final"  0.7;
+    }
+}
+potentialFlow
+{
+	nNonOrthogonalCorrections 2;
+}
+// ************************************************************************* //

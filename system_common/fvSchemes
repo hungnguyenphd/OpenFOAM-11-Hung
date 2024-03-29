@@ -1,0 +1,41 @@
+
+ddtSchemes
+{
+    default         backward;
+}
+
+gradSchemes
+{
+    default         cellLimited Gauss linear 1;
+}
+
+divSchemes
+{
+    default       			none;
+    div(phi,U)    			Gauss LUST grad(U);
+    div(phi,k)    			Gauss upwind;
+    div(phi,omega)			Gauss upwind;
+    div((nuEff*dev2(T(grad(U))))) 	Gauss linear;
+}
+
+laplacianSchemes
+{
+    default         Gauss linear limited corrected 0.5;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         limited corrected 0.5;
+}
+
+wallDist
+{
+	method			meshWave;
+}
+
+// ************************************************************************* //
