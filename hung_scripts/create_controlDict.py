@@ -1,5 +1,5 @@
 default = """
-/*--------------------------------*- C++ -*----------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
@@ -52,6 +52,7 @@ adjustTimeStep      on;
 maxCo               50;
 
 """
+
 OptimisationSwitches = """
 OptimisationSwitches
 {
